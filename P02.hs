@@ -26,22 +26,20 @@ maximoLista (x:xs) =
   then x
   else maximoLista xs
 
--- CORREGIDO (Únicamente lista vacía y con el patrón x:xs)- Recuperar un elemento de una lista de acuerdo a su índice (con comienzo en 0)
+-- CORREGIDO (Únicamente lista vacía y con el patrón x:xs, reducción de ifs de 3 a 2)- Recuperar un elemento de una lista de acuerdo a su índice (con comienzo en 0)
 indice :: [a] -> Int -> a
 indice [] int = error "¡No hay nada que extraer!"
 indice (x:xs) int =
-  if int < 0
+  if int < 0 || int > longitud (x:xs)-1
   then error "No hay ningún elemento bajo tal índice"
   else if int == 0
        then x
-       else if int <= longitud (x:xs)-1  
-            then indice xs
-                 (int-1)                   
-            else error "No hay ningún elemento bajo tal índice"
+       else indice xs
+            (int-1)                   
 
 -----------LISTAS POR COMPRENSIÓN Y RECURSIÓN POR COLA-----------
 
---CORREGIDO (Se quitó el caso base) - Divisores de un número entero
+-- CORREGIDO (Se quitó el caso base) - Divisores de un número entero
 divisores :: Int -> [Int]
 divisores int = [i | i<-[1..int],int `mod `i ==0]
   
@@ -49,8 +47,8 @@ divisores int = [i | i<-[1..int],int `mod `i ==0]
 conjunto :: Eq a => [a] -> [a]
 conjunto [a] = [a]
 conjunto [] = error "¡Ahí no hay nada!"
-  conjunto (x:xs) = x: [a | a<-conjunto xs, a/=x]
+conjunto (x:xs) = x: [a | a<-conjunto xs, a/=x]
 
---CORREGIDO (Se quitó el caso base) - Obtener los números pares de una lista                  
+-- CORREGIDO (Se quitó el caso base) - Obtener los números pares de una lista                  
 numerosPares :: [Int] -> [Int]
 numerosPares xs = [a | a<- xs, a `mod` 2 ==0]
