@@ -49,7 +49,7 @@ divisores int = [i | i<-[1..int],int `mod `i ==0]
 conjunto :: Eq a => [a] -> [a]
 conjunto [a] = [a]
 conjunto [] = error "¡Ahí no hay nada!"
-conjunto (x:xs) = x: [a | a<-conjunto xs, a/=x]
+  conjunto (x:xs) = x: [a | a<-conjunto xs, a/=x]
 
 --CORREGIDO (Se quitó el caso base) - Obtener los números pares de una lista                  
 numerosPares :: [Int] -> [Int]
