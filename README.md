@@ -7,3 +7,6 @@ Creación de funciones empleando recursión y listas (por cabeza, cola y por com
 
 2. (Estructuras Discretas/P03/P03.hs).04-10-24 - Práctica 3 en Haskell:
 Creación de funciones empleando una estructura no nativa a Haskell.
+
+
+
