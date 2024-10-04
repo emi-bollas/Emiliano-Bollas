@@ -1,3 +1,6 @@
+-- PŔACTICA 3 EN HASKELL: FUNCIONES CON ESTRUCTURAS DEFINIDAS POR EL PROGRAMADOR --
+        -- Emiliano García Bollás, Laboratorio de Estructuras Discretas --
+
 -- Nueva estructura, provista por Raúl
 data List a = Void | Node a (List a) deriving Show
 
@@ -54,26 +57,13 @@ insertarIndice (Node x xs) n e =
 
 -- Función que recorre a la derecha los elementos en la cabeza de una lista
 recorrerLista :: List a -> Int -> List a
-recorrerLista Void _ = Void
-recorrerLista (Node x Void) a = (Node x Void)
-recorrerLista (Node x (Node y ys)) n =
-    if n > 0
-    then recorrerLista (append (Node y ys) (Node x)) (n - 1)
-    else Node x (Node y ys)
+recorrerLista Void a = Void
+recorrerLista (Node x xs) a =
+  if a > 0
+  then recorrerLista (convertirAEstructura(adj(convertirALista(Node x xs)))) (a-1)
+  else (Node x xs)
 
-append :: List a -> List a -> List a
-append Void ys = ys
-append (Node x xs) ys = append xs (Node x ys)
-
-
-recorrerLista :: List a -> Int -> List a
-recorrerLista Void _ = Void
-recorrerLista xs 0 = xs
-recorrerLista (Node x ys) n =
-    recorrerLista (append ys (Node x Void)) (n - 1)
-
-append :: List a -> List a -> List a
-append Void ys = ys
-append (Node x xs) ys = Node x (append xs ys)
-
+adj :: [a] -> [a]
+adj [] = []
+adj (x:xs) = xs ++ [x]
 
