@@ -49,18 +49,16 @@ insertarIndice :: List a -> Int -> a -> List a
 insertarIndice Void 0 e = Node e (Void)
 insertarIndice (Node x xs) 0 e = Node e (Node x xs)
 insertarIndice (Node x xs) n e =
-  if n < 0 || n > longitud (Node x xs) - 1
-  then error "Índice fuera del rango permitido."
-  else Node x (insertarIndice xs (n-1) e)
+  if n >= 0 && n <= longitud (Node x xs)
+  then Node x (insertarIndice xs (n-1) e)
+  else error "Índice fuera del rango permitido."
 
---8 ()Función que recorre a la derecha los elementos en la cabeza de una lista, que es lo mismo que recorrerla por completo hacia la izquieda.
 
+--8 (CORREGIDA: Se retrabajó la lógica detrás de la inserción de índices de la función al usar la función ya insertarIndice, que ya se había definido) Función que recorre los elementos de una lista hacia la derecha
 recorrerLista :: List a -> Int -> List a
-recorrerLista Void n = Void
-recorrerLista (Node x (Node y ys)) n =
-    if n > 0
-    then recorrerLista (insertarIndice y 0 (Node x ys)) (n-1)
-    else (Node x (Node y ys))
+recorrerLista Void a = Void
+recorrerLista (Node x xs) 0 = Node x xs
+recorrerLista (Node x xs) n = recorrerLista (insertarIndice xs (longitud xs) x) (n-1)
 
 --Versión previa de la función recorrerLista que emplea una función auxiliar para trabajar con las propiedades de las funciones nativas de Haskell.
 recorrerListaOLD :: List a -> Int -> List a
