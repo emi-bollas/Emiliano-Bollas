@@ -10,6 +10,4 @@ Repositorio público en el que residen tareas y demás cosillas para materias de
 2. (Estructuras Discretas/P03/P03.hs).04-10-24 - Práctica 3 en Haskell:
    Creación de funciones empleando una estructura no nativa a Haskell.
 
-3. (Estructuras Discretas/P03/P04.hs).27-10-24 - Práctica 4 en Haskell:
-   
-   Similar a la anterior, mas tratando con árboles binarios en esta ocasión.
+3. (Estructuras Discretas/P03/P04.hs).27-10-24 - Práctica 4 en Haskell: Similar a la anterior, mas tratando con árboles binarios en esta ocasión.
