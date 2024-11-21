@@ -52,7 +52,18 @@ equivalencia (f1 :<=>: f2) = (f1 :&: f2) :|: (negacion f1 :&: negacion f2)
 
 -------------------- EJERCICIO 4 --------------------
 interpretacion :: Formula -> [(Var,Bool)] -> Bool
-interpretacion _ = undefined
+interpretacion (Atom a :=>: Atom b) [(a,m),(b,n)] = not m || n -- Equivalencia lógica
+interpretacion (Atom a :&: Atom b) [(a,m),(b,n)] = m && n 
+interpretacion (Atom a :|: Atom b) [(a,m),(b,n)] = m || n
+interpretacion (Atom a :<=>: Atom b) [(a,m),(b,n)] = interpretacion (Atom a :=> Atom b) [(a,m),(b,n)] && 
+                                                      interpretacion (Atom b :=>: Atom a) [(a,m),(b,n)]
+interpretacion (f1 :&: f2) comp = interpretacion f1 comp && interpretacion f2 comp
+interpretacion (f1 :|: f2) comp = interpretacion f1 comp || interpretacion f2 comp
+interpretacion (f1 :=>: f2) comp = not (interpretacion f1 comp) || interpretacion f2 comp
+interpretacion (f1 :<=>: f2) comp = interpretacion (f1 :=>: f2) comp && 
+                                                                  interpretacion (f2 :=>: f1) comp
+                                    
+
 -----------------------------------------------------
 
 -------------------- EJERCICIO 5 --------------------
