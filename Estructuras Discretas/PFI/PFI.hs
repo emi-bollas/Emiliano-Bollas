@@ -44,7 +44,7 @@ negacion (f1 :<=>: f2) = (f1 :&: negacion f2) :|: (negacion f1 :&: f2)
 -------------------- EJERCICIO 3 --------------------
 equivalencia :: Formula -> Formula
 equivalencia (Atom a) = Atom a
-equivalencia (Neg fn) = Neg (equivalencia fn)
+equivalencia (Neg fn) = negacion (equivalencia fn)
 equivalencia (f1 :&: f2) = (equivalencia f1) :&: (equivalencia f2)
 equivalencia (f1 :|: f2) = (equivalencia f1) :|: (equivalencia f2)
 equivalencia (f1 :=>: f2) = negacion (equivalencia f1) :|: (equivalencia f2)
