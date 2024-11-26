@@ -82,3 +82,4 @@ tablaDeVerdad :: Formula -> [([(Var,Bool)],Bool)]
 tablaDeVerdad fn = [(x, interpretacion fn x) | x <- combinaciones fn]
 -----------------------------------------------------
 
+--25-11-24 18:40 - Últimos cambios--
